@@ -118,11 +118,17 @@ ORDER BY totalAlunos DESC;
 
 ### 5️⃣ Soma de Notas por Turma
 ```sql
-SELECT t.nomeTurma, SUM(n.nota) AS somaNotas
+SELECT 
+    t.nomeTurma,
+    a.nome AS nomeAluno,
+    SUM(n.nota * av.peso) * 1.0 / NULLIF(SUM(av.peso), 0) AS mediaPonderada
 FROM nota n
+INNER JOIN avaliacao av ON n.fkAvaliacao = av.id
 INNER JOIN matricula m ON n.fkMatricula = m.id
+INNER JOIN aluno a ON m.fkAluno = a.id
 INNER JOIN turma t ON m.fkTurma = t.id
-GROUP BY t.nomeTurma;
+GROUP BY t.nomeTurma, a.nome
+ORDER BY t.nomeTurma, mediaPonderada DESC;
 ```
 
 ### 6️⃣ Alunos com Frequência < 75%
