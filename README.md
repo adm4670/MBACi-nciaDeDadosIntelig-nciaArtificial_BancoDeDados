@@ -152,23 +152,9 @@ ORDER BY percentualPresenca;
 
 ## 👨‍💻 Equipe
 
-**Nome da Equipe:** `Equipe DataMasters`  
 **Integrantes:**
+- Bernadete Fernandes Guedes De Souza Leitao  
 - Diego Alisson Monteiro  
-- Nome 2  
-- Nome 3  
-
-🔗 [Acesse o repositório no GitHub](https://github.com/seu-usuario/seu-repositorio)
-
----
-
-## 📬 Contato
-
-Em caso de dúvidas ou sugestões, entre em contato:
-
-**Diego Alisson Monteiro**  
-✉️ diego.alisson@example.com
-
----
-
-> _Este projeto pode ser expandido com funcionalidades como geração de certificados, relatórios por docente e dashboards interativos com KPIs educacionais._
+- Maria das Graças Gonçalves Bezerra  
+- Mitchell Bezerra De Oliveira  
+- Thiago Antonio Cavalcanti Bizinco Dos Santos
