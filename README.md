@@ -1,88 +1,174 @@
-# Sistema Educacional - Banco de Dados
 
-## Visão Geral
+# 🎓 Sistema Educacional — Banco de Dados
 
-Este projeto contém o modelo e scripts para o banco de dados de um sistema educacional focado no registro de frequência (presença) de alunos em aulas e turmas, assim como o controle de notas e avaliações.
-
-O objetivo é gerenciar informações acadêmicas essenciais para acompanhamento de alunos, turmas, cursos, aulas, presenças e desempenho acadêmico.
+> Projeto acadêmico para controle de **frequência**, **notas** e **avaliações** em instituições de ensino.
 
 ---
 
-## Estrutura do Banco de Dados
+## 📌 Visão Geral
 
-### Principais Entidades
+Este projeto define o modelo relacional e os scripts SQL de um **sistema educacional completo**, focado em:
 
-- **Aluno**  
-  Armazena dados pessoais dos alunos, como nome, CPF, e-mail e data de nascimento.
+- Registro de **frequência** dos alunos
+- Controle de **notas e avaliações**
+- Gestão de **turmas, cursos e matrículas**
 
-- **Curso**  
-  Representa os cursos oferecidos pela instituição, incluindo nome e carga horária.
-
-- **Turma**  
-  Cada turma está vinculada a um curso e possui informações como nome, período de início e fim.
-
-- **Matrícula**  
-  Relaciona alunos a turmas, indicando em qual turma o aluno está matriculado e a data da matrícula.
-
-- **Aula**  
-  Representa as aulas ministradas em cada turma, com data e conteúdo previsto.
-
-- **Frequência**  
-  Registra a presença ou ausência dos alunos em cada aula, vinculada à matrícula.
-
-- **Avaliação**  
-  Define as avaliações aplicadas em cada turma, com descrição, data e peso.
-
-- **Nota**  
-  Armazena as notas obtidas pelos alunos em cada avaliação.
-
-### Relacionamentos
-
-- Um **curso** pode ter várias **turmas**.
-- Uma **turma** possui várias **aulas** e **avaliações**.
-- Um **aluno** pode estar matriculado em várias **turmas** (através da tabela `matricula`).
-- Cada **frequência** relaciona um aluno (via matrícula) a uma aula específica, indicando presença ou ausência.
-- As **notas** relacionam avaliações a alunos (via matrícula), registrando o desempenho acadêmico.
+📁 Ideal para instituições que desejam acompanhar com precisão o **desempenho acadêmico** de seus alunos.
 
 ---
 
-## Scripts SQL
+## 🧱 Estrutura do Banco de Dados
 
-O projeto inclui scripts para:
+### 🔹 Principais Entidades
 
-- Criação das tabelas com chaves primárias e estrangeiras adequadas.
-- Inserção de dados fictícios para testes, incluindo alunos, cursos, turmas, matrículas, aulas, frequências, avaliações e notas.
-- Os campos `createdAt` e `updatedAt` estão presentes em todas as tabelas para controle de data/hora de criação e atualização.
+| Entidade     | Descrição                                                                 |
+|--------------|---------------------------------------------------------------------------|
+| **Aluno**    | Dados pessoais (nome, CPF, e-mail, data de nascimento)                   |
+| **Curso**    | Nome do curso, carga horária                                              |
+| **Turma**    | Vinculada a um curso, com datas de início/fim                             |
+| **Matrícula**| Conecta alunos a turmas com data de matrícula                             |
+| **Aula**     | Sessões de aula com data e conteúdo                                       |
+| **Frequência**| Registro de presença/ausência por aula                                   |
+| **Avaliação**| Descrição, data e peso das provas/atividades                             |
+| **Nota**     | Notas dos alunos em cada avaliação                                        |
 
----
+### 🔗 Relacionamentos
 
-## Tecnologias e Ferramentas
-
-- **Banco de Dados**: SQL Server
-- **Linguagem SQL**: Scripts padrão T-SQL para criação e manipulação das tabelas.
-- **Nomenclatura**: CamelCase para nomes de colunas e tabelas.
-- **Chaves**:  
-  - Chave primária sempre chamada `id`.  
-  - Chaves estrangeiras prefixadas com `fk` + nome da tabela referenciada.
-
----
-
-## Como usar
-
-1. Execute o script de criação do banco e das tabelas no seu ambiente SQL Server.
-2. Utilize os scripts de inserção para popular as tabelas com dados fictícios.
-3. Utilize consultas SQL para obter informações sobre frequência, notas e avaliações.
-4. Pode ser adaptado para integrar com aplicações backend ou dashboards de acompanhamento.
+- 📘 Um **Curso** → várias **Turmas**
+- 🧑‍🏫 Uma **Turma** → várias **Aulas** e **Avaliações**
+- 👨‍🎓 Um **Aluno** → várias **Matrículas**
+- ✅ **Frequência** conecta **Matrícula** e **Aula**
+- 📊 **Nota** conecta **Avaliação** e **Matrícula**
 
 ---
 
-## Contato
+## 🛠️ Scripts SQL
 
-Para dúvidas ou contribuições, entre em contato com:
+Inclui:
+
+- Criação de tabelas com **chaves primárias e estrangeiras**
+- Campos padrão `createdAt` e `updatedAt`
+- Inserção de **dados fictícios** para testes (alunos, cursos, etc.)
+- Scripts otimizados para **SQL Server** usando T-SQL
+
+🔤 **Padrões de nomenclatura**:
+- Tabelas e colunas em `CamelCase`
+- Chave primária: `id`
+- Chave estrangeira: `fk` + nome da tabela referenciada
+
+---
+
+## 💻 Tecnologias Utilizadas
+
+| Ferramenta     | Descrição                              |
+|----------------|----------------------------------------|
+| 🎯 **SGBD**     | Microsoft SQL Server                   |
+| 🧾 **SQL**      | T-SQL (Transact-SQL)                   |
+| 📐 **Modelagem**| Relacional, com integridade referencial|
+
+---
+
+## ▶️ Como Usar
+
+1. **Execute** o script de criação no SQL Server.
+2. **Popule** as tabelas com os dados fictícios incluídos.
+3. **Realize consultas** para análise de dados (presença, notas, desempenho).
+4. **Integre** com sistemas web, APIs ou dashboards.
+
+---
+
+## 📈 Consultas SQL Relevantes
+
+### 1️⃣ Alunos por Turma
+```sql
+SELECT DISTINCT t.nomeTurma, a.nome AS nomeAluno
+FROM turma t
+INNER JOIN matricula m ON t.id = m.fkTurma
+INNER JOIN aluno a ON a.id = m.fkAluno
+ORDER BY t.nomeTurma, a.nome;
+```
+
+### 2️⃣ Média das Notas por Aluno
+```sql
+SELECT a.nome, AVG(n.nota) AS mediaNota
+FROM nota n
+INNER JOIN matricula m ON n.fkMatricula = m.id
+INNER JOIN aluno a ON a.id = m.fkAluno
+GROUP BY a.nome
+ORDER BY mediaNota DESC;
+```
+
+### 3️⃣ Total de Aulas por Turma
+```sql
+SELECT t.nomeTurma, COUNT(au.id) AS totalAulas
+FROM turma t
+INNER JOIN aula au ON t.id = au.fkTurma
+GROUP BY t.nomeTurma;
+```
+
+### 4️⃣ Total de Alunos por Curso
+```sql
+SELECT c.nomeCurso, COUNT(DISTINCT m.fkAluno) AS totalAlunos
+FROM curso c
+INNER JOIN turma t ON c.id = t.fkCurso
+INNER JOIN matricula m ON t.id = m.fkTurma
+GROUP BY c.nomeCurso
+ORDER BY totalAlunos DESC;
+```
+
+### 5️⃣ Soma de Notas por Turma
+```sql
+SELECT t.nomeTurma, SUM(n.nota) AS somaNotas
+FROM nota n
+INNER JOIN matricula m ON n.fkMatricula = m.id
+INNER JOIN turma t ON m.fkTurma = t.id
+GROUP BY t.nomeTurma;
+```
+
+### 6️⃣ Alunos com Frequência < 75%
+```sql
+SELECT a.nome, t.nomeTurma,
+    SUM(CASE WHEN f.presente = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(f.id) AS percentualPresenca
+FROM frequencia f
+INNER JOIN matricula m ON f.fkMatricula = m.id
+INNER JOIN aluno a ON m.fkAluno = a.id
+INNER JOIN turma t ON m.fkTurma = t.id
+GROUP BY a.nome, t.nomeTurma
+HAVING SUM(CASE WHEN f.presente = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(f.id) < 75
+ORDER BY percentualPresenca;
+```
+
+---
+
+## 🎯 Objetivo Acadêmico
+
+📘 Desenvolvido como parte da disciplina de **Banco de Dados** em curso de **pós-graduação**, este projeto visa:
+
+- Consolidar conhecimentos de modelagem relacional
+- Aplicar conceitos em um contexto educacional real
+- Criar base para sistemas de apoio à decisão pedagógica
+
+---
+
+## 👨‍💻 Equipe
+
+**Nome da Equipe:** `Equipe DataMasters`  
+**Integrantes:**
+- Diego Alisson Monteiro  
+- Nome 2  
+- Nome 3  
+
+🔗 [Acesse o repositório no GitHub](https://github.com/seu-usuario/seu-repositorio)
+
+---
+
+## 📬 Contato
+
+Em caso de dúvidas ou sugestões, entre em contato:
 
 **Diego Alisson Monteiro**  
-Email: diego.alisson@example.com
+✉️ diego.alisson@example.com
 
 ---
 
-*Este projeto é um exemplo para gerenciamento educacional e pode ser adaptado conforme necessidades específicas da instituição.*
+> _Este projeto pode ser expandido com funcionalidades como geração de certificados, relatórios por docente e dashboards interativos com KPIs educacionais._
